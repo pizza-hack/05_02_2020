@@ -2,11 +2,11 @@ package rocammo;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
 class Pizza {
@@ -45,7 +45,7 @@ class Pizza {
 		boolean condition = false;
 		int decrease = 1;
 		while (!condition) {
-			for (int i = MAX_SLICES - decrease, j = 0; sum <= diff && i >= 0; i--, j++) {
+			for (int i = MAX_SLICES - decrease; sum <= diff && i >= 0; i--) {
 				if (sum + this.slices[i] <= diff) {
 					indexes.add(i);
 					sum += this.slices[i];
@@ -128,24 +128,36 @@ class Pizza {
 }
 
 public class Main {
-	public static final String PATH_1 = "in/a_example.in";
-	public static final String PATH_2 = "in/b_small.in";
-	public static final String PATH_3 = "in/c_medium.in";
-	public static final String PATH_4 = "in/d_quite_big.in";
-	public static final String PATH_5 = "in/e_also_big.in";
+	public static final String IN_1 = "in/a_example.in";
+	public static final String IN_2 = "in/b_small.in";
+	public static final String IN_3 = "in/c_medium.in";
+	public static final String IN_4 = "in/d_quite_big.in";
+	public static final String IN_5 = "in/e_also_big.in";
+	
+	public static final String OUT_1 = "out/a_example.out";
+	public static final String OUT_2 = "out/b_small.out";
+	public static final String OUT_3 = "out/c_medium.out";
+	public static final String OUT_4 = "out/d_quite_big.out";
+	public static final String OUT_5 = "out/e_also_big.out";
 
 	public static void main(String args[]) throws IOException {
-		Pizza p1 = readFile(PATH_1);
-		Pizza p2 = readFile(PATH_2);
-		Pizza p3 = readFile(PATH_3);
-		Pizza p4 = readFile(PATH_4);
-		Pizza p5 = readFile(PATH_5);
+		Pizza p1 = readFile(IN_1);
+		Pizza p2 = readFile(IN_2);
+		Pizza p3 = readFile(IN_3);
+		Pizza p4 = readFile(IN_4);
+		Pizza p5 = readFile(IN_5);
 
+		p1.solve();
+		p2.solve();
+		p3.solve();
+		p4.solve();
 		p5.solve();
-//		System.out.println("score: " + p5.getScore());
-		PrintStream fw = new PrintStream(new File("out/out_5.txt"));
-		System.out.println(p5); // TODO VOLCAR A FICHERO
-		fw.close();
+		
+		writeFile(OUT_1, p1);
+		writeFile(OUT_2, p2);
+		writeFile(OUT_3, p3);
+		writeFile(OUT_4, p4);
+		writeFile(OUT_5, p5);
 	}
 
 	public static Pizza readFile(String path) throws IOException {
@@ -173,5 +185,11 @@ public class Main {
 		br.close();
 
 		return pizza;
+	}
+	
+	public static void writeFile(String path, Pizza pizza) throws FileNotFoundException {
+		PrintStream fw = new PrintStream(new File(path));
+		fw.println(pizza);
+		fw.close();
 	}
 }

@@ -94,7 +94,6 @@ class Pizza {
 
 	private int calculateScore() {
 		int i, _score;
-		System.out.println(this.solution.size());
 		for (i = 0, _score = 0; i < this.solution.size(); i++) {
 			_score += this.slices[this.solution.get(i)];
 		}

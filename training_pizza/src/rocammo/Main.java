@@ -38,32 +38,30 @@ class Pizza {
 			diff = diff * -1;
 		System.out.println("max_score: " + MAX_SCORE + ", max_achieved: " + max_achieved + ", diff: " + diff);
 
-//		for (int i = 0; i < this.MAX_SLICES; i++) {
-//			System.out.print(this.slices[i] + ", ");
-//		}
-
-//		add(0);
-//		add(2);
-//		add(3);
-//		add(4);
-
 		int sum = 0;
-		int[] indexes = new int[MAX_SLICES];
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
 		boolean condition = false;
 		int decrease = 1;
 		while (!condition) {
 			for (int i = MAX_SLICES - decrease, j = 0; sum <= diff && i >= 0; i--, j++) {
 				if (sum + this.slices[i] <= diff) {
-					indexes[j] = this.slices[i];
+					indexes.add(i);
 					sum += this.slices[i];
+				} else {
+					continue;
 				}
 			}
 			if (sum == diff) {
+				for (int i = 0; i < MAX_SLICES; i++) {
+					this.solution.add(i);
+				}
+				for (int i = 0; i < indexes.size(); i++) {
+					this.solution.remove(indexes.get(i));
+				}
 				condition = true;
-				System.out.println(Arrays.toString(indexes));
-				System.out.println(sum);
 			}
 
+			indexes.clear();
 			sum = 0;
 			decrease++;
 		}
@@ -96,6 +94,7 @@ class Pizza {
 
 	private int calculateScore() {
 		int i, _score;
+		System.out.println(this.solution.size());
 		for (i = 0, _score = 0; i < this.solution.size(); i++) {
 			_score += this.slices[this.solution.get(i)];
 		}
@@ -142,9 +141,9 @@ public class Main {
 		Pizza p5 = readFile(PATH_5);
 
 		p3.solve();
-//		p3.getScore();
+		System.out.println("score: " + p3.getScore());
 
-//		System.out.println(p3); // TODO VOLCAR A FICHERO
+		System.out.println(p3); // TODO VOLCAR A FICHERO
 	}
 
 	public static Pizza readFile(String path) throws IOException {

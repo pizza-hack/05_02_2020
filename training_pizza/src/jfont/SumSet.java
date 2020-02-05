@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class SumSet {
+	
+	static int bestSoFar = 0;
+	static ArrayList<Integer> bestIndexSoFar;
+	
 	static void sum_up_recursive(ArrayList<Integer> numbers, int target, ArrayList<Integer> partial) {
 		int s = 0;
 		for (int x : partial)
@@ -12,6 +16,12 @@ class SumSet {
 			System.out.println("sum(" + Arrays.toString(partial.toArray()) + ")=" + target);
 		if (s >= target)
 			return;
+		
+		if(s > bestSoFar) {
+			bestSoFar = s;
+			bestIndexSoFar = partial;
+			System.out.println("Faltan:"+(target-s)+" - "+partial.toString());
+		}
 		for (int i = 0; i < numbers.size(); i++) {
 			ArrayList<Integer> remaining = new ArrayList<Integer>();
 			int n = numbers.get(i);

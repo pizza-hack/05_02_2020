@@ -1,8 +1,10 @@
 package rocammo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -139,10 +141,11 @@ public class Main {
 		Pizza p4 = readFile(PATH_4);
 		Pizza p5 = readFile(PATH_5);
 
-		p3.solve();
-		System.out.println("score: " + p3.getScore());
-
-		System.out.println(p3); // TODO VOLCAR A FICHERO
+		p5.solve();
+//		System.out.println("score: " + p5.getScore());
+		PrintStream fw = new PrintStream(new File("out/out_5.txt"));
+		System.out.println(p5); // TODO VOLCAR A FICHERO
+		fw.close();
 	}
 
 	public static Pizza readFile(String path) throws IOException {

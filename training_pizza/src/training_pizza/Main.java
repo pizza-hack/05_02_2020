@@ -1,7 +1,6 @@
 package training_pizza;
 
 public class Main {
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//System.out.println("Hllo world");
@@ -14,7 +13,5 @@ public class Main {
 		s3.start();
 
 		//System.out.println(System.currentTimeMillis() - t0);
-		
 	}
-
 }

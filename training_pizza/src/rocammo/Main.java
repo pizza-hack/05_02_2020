@@ -53,10 +53,10 @@ class Pizza {
 			}
 			if (sum == diff) {
 				for (int i = 0; i < MAX_SLICES; i++) {
-					this.solution.add(i);
+					add(i);
 				}
 				for (int i = 0; i < indexes.size(); i++) {
-					this.solution.remove(indexes.get(i));
+					remove(indexes.get(i));
 				}
 				condition = true;
 			}

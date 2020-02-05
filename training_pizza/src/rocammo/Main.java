@@ -29,7 +29,12 @@ class Pizza {
 	
 	public void add(int index) {
 		if (index >= MAX_SLICES) {
-			System.err.println("Error: remove: index: " + index + ", higher than MAX_SLICES: " + this.MAX_SLICES);
+			System.err.println("Error: add: index: " + index + ", higher than MAX_SLICES: " + this.MAX_SLICES);
+			return;
+		}
+		
+		if (this.solution.contains(index)) {
+			System.err.println("Error: add: index: " + index + ", is already taken");
 			return;
 		}
 		
@@ -69,6 +74,7 @@ public class Main {
 		pizza.fill(arr);
 		
 		/* WORKINGON */
+		pizza.add(0);
 		pizza.add(0);
 		System.out.println(pizza.getScore());
 		pizza.add(5);
